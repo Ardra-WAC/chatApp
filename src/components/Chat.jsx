@@ -100,12 +100,12 @@ function Chat({ chatId, user, onBack, onShowDetail }) {
             }
             alt=""
           />
-          <div className={chatStyles.texts}>
-            <span>{user?.username}</span>
-            <p>
+          <div className={chatStyles.toptext}>
+            <span className={chatStyles.topuserName}>{user?.username}</span>
+            <p className={chatStyles.onlineStatus}>
   {isOnline
     ? "Online"
-    : lastOnline
+    : lastOnline && lastOnline > 0
     ? `Last seen ${new Date(lastOnline).toLocaleString()}`
     : "Offline"}
 </p>
@@ -133,6 +133,7 @@ function Chat({ chatId, user, onBack, onShowDetail }) {
           <FaCamera className={chatStyles.inputIcons} />
           <FaMicrophone className={chatStyles.inputIcons} />
         </div>
+        <form onSubmit={handleSend}>
         <input
           className={chatStyles.messageTypingField}
           type="text"
@@ -157,15 +158,19 @@ function Chat({ chatId, user, onBack, onShowDetail }) {
           </div>
         </div>
         <button
+        type="submit"
           className={chatStyles.sendButton}
-          onClick={handleSend}
           disabled={isCurrentUserBlocked || isReceiverBlocked}
         >
           Send
         </button>
+        </form>
       </div>
     </div>
   );
 }
 
 export default Chat;
+
+
+

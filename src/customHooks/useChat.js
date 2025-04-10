@@ -27,7 +27,7 @@ function useChat() {
   const user = chat.user;
   const currentUser = useAtom(userValue);
   const { isOnline, lastOnline } = useOnlineStatus(user.id);
-  console.log("user is", isOnline, lastOnline);
+  console.log("user is online :", isOnline, lastOnline);
   const isReceiverTyping = useTypingStatus(chatId, user?.id);
 
   const typingTimeoutRef = useRef(null);
@@ -54,7 +54,8 @@ function useChat() {
     }
   };
 
-  const handleSend = async () => {
+  const handleSend = async (e) => {
+    e.preventDefault();
     if (text === "" || !chatId) return;
 
     try {
@@ -118,7 +119,7 @@ function useChat() {
     setLoading,
     isOnline,
     lastOnline,
-    isReceiverTyping
+    isReceiverTyping,
   };
 }
 

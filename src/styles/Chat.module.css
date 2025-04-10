@@ -25,9 +25,8 @@
 .backIcon {
   cursor: pointer;
   margin-right: 20px;
-  display:none;
+  display: none;
 }
-
 .user {
   display: flex;
   align-items: center;
@@ -51,7 +50,19 @@
   color: white;
   font-size: 18px;
 }
-
+.toptexts {
+  background-color: transparent;
+}
+.topuserName {
+  font-size: 22px;
+  font-weight: 600;
+}
+.onlineStatus {
+  margin-top: 5px;
+  background-color: transparent;
+  color: wheat;
+  font-size: 13px;
+}
 .icons {
   display: flex;
   gap: 20px;
@@ -77,6 +88,7 @@
   max-width: 70%;
   display: flex;
   gap: 20px;
+  font-weight: 500;
 }
 
 .message.own {
@@ -84,7 +96,7 @@
 }
 
 .message.own .texts p {
-  background-color: rgba(78, 194, 78, 0.685);
+  background-color: rgba(78, 194, 78, 0.897);
 }
 
 .texts p {
@@ -95,7 +107,7 @@
 
 .sentTime {
   color: wheat;
-  font-size: 10px;
+  font-size: 8px;
 }
 
 .bottom {
@@ -122,14 +134,16 @@
   padding: 20px;
   border-radius: 10px;
   font-size: 16px;
-  cursor: not-allowed;
+  cursor: auto;
+  width: calc(100% - 140px); /* Adjust 140px based on icons + button width */
+  min-width: 100px;
 }
 
 .messageTypingField:disabled {
   cursor: not-allowed;
 }
 
-.emoji {
+.emojiImage {
   position: relative;
 }
 
@@ -140,7 +154,7 @@
 }
 
 .sendButton {
-  background-color: rgb(43, 255, 0);
+  background-color: rgba(43, 255, 0, 0.534);
   color: white;
   padding: 10px 20px;
   border: none;
@@ -151,10 +165,15 @@
 }
 
 .sendButton:disabled {
-  background-color: rgba(43, 255, 0, 0.534);
+  background-color: rgba(45, 139, 26, 0.925);
   cursor: not-allowed;
 }
-
+.sendButton:disabled:hover {
+  background-color: rgba(45, 139, 26, 0.925);
+}
+.sendButton:hover {
+  background-color: rgba(43, 255, 0);
+}
 .dateSeparator {
   text-align: center;
   margin: 10px 0;
@@ -177,9 +196,9 @@
     height: 100%;
     border: none;
   }
- .backIcon{
-  display: block;
- }
+  .backIcon {
+    display: block;
+  }
 }
 
 @media (max-width: 500px) {
@@ -208,7 +227,7 @@
   .messageTypingField {
     padding: 8px 0;
     font-size: 15px;
-    width: 35px;
+    width:125px;
   }
   .emojiImage {
     width: 40px;

@@ -9,23 +9,15 @@ import { db } from "../lib/firebase";
 import useChats from "../customHooks/useChats";
 
 function ChatList({ onChatSelect }) {
-  // const [chats, setChats] = useState([]);
-  // const [addMode, setAddMode] = useState(false);
-  // const [loading, setLoading] = useState(false);
-  // const [searchInput, setSearchInput] = useState("");
-  // const currentUser = useAtomValue(userValue);
   const { chatChange, 
     handleSelect, 
     handleChange,  
     currentUser,
-    chats,
     setChats,
     addMode, 
     setAddMode,
     loading, 
     setLoading,
-    searchInput, 
-    setSearchInput,
     filteredChats } = useChats(onChatSelect);
 
   useEffect(() => {

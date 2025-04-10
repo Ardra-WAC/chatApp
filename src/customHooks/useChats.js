@@ -45,7 +45,10 @@ function useChats(onChatSelect) {
   };
 
   const toggleBlock = () => {
-    setChatValues((prev) => ({ ...prev, isReceiverBlocked: !isReceiverBlocked }));
+    setChatValues((prev) => ({
+      ...prev,
+      isReceiverBlocked: !isReceiverBlocked,
+    }));
   };
   const handleSelect = async (chat) => {
     const userChats = chats.map((item) => {
@@ -82,15 +85,12 @@ function useChats(onChatSelect) {
     handleSelect,
     handleChange,
     currentUser,
-    chats,
     setChats,
-    addMode, 
+    addMode,
     setAddMode,
-    loading, 
+    loading,
     setLoading,
-    searchInput, 
-    setSearchInput,
-    filteredChats
+    filteredChats,
   };
 }
 

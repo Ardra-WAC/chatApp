@@ -9,14 +9,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { userValue, authLoading, chatValue } from "./lib/userStore";
 import { useAtom, useAtomValue } from "jotai";
+import { setOnlineStatus } from "./utils/setOnlineStatus";
 
 function App() {
   const [user, setUser] = useAtom(userValue);
   const [isLoading, setIsLoading] = useAtom(authLoading);
-  const [chat, setChat] = useAtom(chatValue); // Use setter for chatValue
+  const [chat, setChat] = useAtom(chatValue);
   const chatId = chat?.chatId;
 
-  // Add view state for mobile navigation
   const [view, setView] = useState("chatList"); // "chatList", "chat", "detail"
 
   const fetchUserInfo = async (uid) => {
@@ -38,7 +38,7 @@ function App() {
         setUser(null);
       }
     } catch (err) {
-      console.log(err);
+      console.log("Error fetching user info:", err);
       setUser(null);
     } finally {
       setIsLoading(false);
@@ -48,20 +48,22 @@ function App() {
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
       fetchUserInfo(user?.uid);
+      if (user) {
+        setOnlineStatus(); // Set online status for the logged-in user
+      }
     });
     return () => unSub();
   }, []);
 
-  // Handle chat selection and sync with chatValue
   const handleChatSelect = (selectedChat) => {
-    setChat(selectedChat); // Sync chatValue with selected chat
-    setView("chat"); // Switch to chat view on mobile
+    setChat(selectedChat);
+    setView("chat");
   };
 
   const handleShowDetail = () => setView("detail");
   const handleBackToChatList = () => {
     setView("chatList");
-    setChat(null); // Clear chat when going back
+    setChat(null);
   };
   const handleBackToChat = () => setView("chat");
 
@@ -71,21 +73,19 @@ function App() {
     <div className="container">
       {user ? (
         <>
-          {/* Desktop: Show all components side-by-side */}
           <div className="desktop-layout">
             <List onChatSelect={handleChatSelect} />
             {chatId && (
               <Chat
                 chatId={chatId}
-                user={chat?.user} // Pass user from chatValue
-                onBack={handleBackToChatList} // Optional: Add back functionality
+                user={chat?.user}
+                onBack={handleBackToChatList}
                 onShowDetail={handleShowDetail}
               />
             )}
             {chatId && <Detail user={chat?.user} onBack={handleBackToChat} />}
           </div>
 
-          {/* Mobile layout with navigation */}
           <div className="mobile-layout">
             {view === "chatList" && <List onChatSelect={handleChatSelect} />}
             {view === "chat" && chat && (
