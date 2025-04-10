@@ -1,7 +1,7 @@
 .addUser {
   width: max-content;
   height: max-content;
-  background-color:  rgba(22, 92, 173, 0.897);
+  background-color: rgba(22, 92, 173, 0.897);
   border-radius: 10px;
   padding: 30px;
   position: absolute;
@@ -10,52 +10,55 @@
   left: 0;
   bottom: 0;
   margin: auto;
+}
 
-  form {
-    display: flex;
-    gap: 20px;
+form {
+  display: flex;
+  gap: 20px;
+}
 
-    input {
-      padding: 2px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-      background-color: white;
-    }
-    button {
-      padding: 20px;
-      border-radius: 10px;
-      background-color: #008b8b;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  }
-  .user {
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+input {
+  padding: 2px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: white;
+}
 
-    .detail {
-      display: flex;
-      align-items: center;
-      gap: 20px;
+button {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #008b8b;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 
-      img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-    }
-    button {
-      padding: 20px;
-      border-radius: 10px;
-      background-color:  rgba(22, 92, 173, 0.897);
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  }
+.user {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.detail img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user button {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(22, 92, 173, 0.897);
+  color: white;
+  border: none;
+  cursor: pointer;
 }

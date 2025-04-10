@@ -1,0 +1,98 @@
+.chatlist {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.searchBar {
+  flex: 1;
+  background-color: rgba(22, 92, 173, 0.562);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.searchTypingField {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  flex: 1;
+}
+
+.addIcon {
+  width: 36px;
+  height: 36px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgba(22, 92, 173, 0.562);
+  border-radius: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+  flex-direction: row; /* Align avatar and text horizontally */
+}
+
+.img {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+
+.texts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.texts span {
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.texts p {
+  font-size: 14px;
+  color: #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.unreadBadge {
+  background-color: #ff4500;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 7px;
+  font-size: 12px;
+  margin-left: auto;
+  align-self: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .chatlist {
+    width: 100%;
+    height: 100%;
+  }
+}

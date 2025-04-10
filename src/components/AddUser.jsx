@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/AddUser.css";
 import useAddUser from "../customHooks/useAddUser";
 
 function AddUser() {
-
-  const {  handleSearch, handleAdd, user} = useAddUser();
+  const { handleSearch, handleAdd, user } = useAddUser();
 
   return (
     <div className="addUser">
@@ -23,7 +22,7 @@ function AddUser() {
           </div>
           <button onClick={handleAdd}>Add User</button>
         </div>
-      ):(
+      ) : (
         "No matching results"
       )}
     </div>

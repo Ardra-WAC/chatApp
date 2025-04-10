@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { db } from "../lib/firebase";
 import { chatValue, userValue } from "../lib/userStore";
 import { useAtomValue } from "jotai";
 import { useAtom } from "jotai";
 import useOnlineStatus from "./useOnlineStatus";
+import useTypingStatus from "../customHooks/useTypingStatus";
+import { setTypingStatus } from "../utils/setTypingStatus";
 import {
   arrayUnion,
   doc,
   onSnapshot,
   updateDoc,
   getDoc,
+  Timestamp,
 } from "firebase/firestore";
 
 function useChat() {
@@ -23,8 +26,11 @@ function useChat() {
   const isReceiverBlocked = chat.isReceiverBlocked;
   const user = chat.user;
   const currentUser = useAtom(userValue);
-  const { isOnline, lastOnline } = useOnlineStatus(user.id)
-  console.log("user is",isOnline, lastOnline );
+  const { isOnline, lastOnline } = useOnlineStatus(user.id);
+  console.log("user is", isOnline, lastOnline);
+  const isReceiverTyping = useTypingStatus(chatId, user?.id);
+
+  const typingTimeoutRef = useRef(null);
 
   const handleClick = () => {
     setOpen((prev) => !prev);
@@ -36,24 +42,37 @@ function useChat() {
   };
 
   const handleChange = (e) => {
-    setText(e.target.value);
-    console.log(text);
+    const value = e.target.value;
+    setText(value);
+    setTypingStatus(chatId, currentUser[0].id, value !== "");
+    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+
+    if (value !== "") {
+      typingTimeoutRef.current = setTimeout(() => {
+        setTypingStatus(chatId, currentUser[0].id, false);
+      }, 500);
+    }
   };
 
   const handleSend = async () => {
-    if (text === "") return;
+    if (text === "" || !chatId) return;
 
     try {
+      const newMessage = {
+        senderId: currentUser[0].id,
+        text,
+        createdAt: Timestamp.now(),
+      };
+
       await updateDoc(doc(db, "chats", chatId), {
-        messages: arrayUnion({
-          senderId: currentUser[0].id,
-          text,
-          createdAt: new Date(),
-        }),
+        messages: arrayUnion(newMessage),
       });
+
       setText("");
-      const userID = [currentUser[0].id, user.id];
-      userID.forEach(async (id) => {
+
+      const userIDs = [currentUser[0].id, user.id];
+
+      userIDs.forEach(async (id) => {
         const userChatsRef = doc(db, "userchats", id);
         const userChatsSnapshot = await getDoc(userChatsRef);
 
@@ -63,21 +82,23 @@ function useChat() {
             (c) => c.chatId === chatId
           );
 
-          userChatsData.chats[chatIndex].lastMessage = text;
-          userChatsData.chats[chatIndex].isSeen =
-            id === currentUser.id ? true : false;
-          userChatsData.chats[chatIndex].updatedAt = Date.now();
+          if (chatIndex !== -1) {
+            userChatsData.chats[chatIndex].lastMessage = text;
+            userChatsData.chats[chatIndex].isSeen =
+              id === currentUser[0].id ? true : false;
+            userChatsData.chats[chatIndex].updatedAt = Date.now();
 
-          await updateDoc(userChatsRef, {
-            chats: userChatsData.chats,
-          });
+            await updateDoc(userChatsRef, {
+              chats: userChatsData.chats,
+            });
+          }
         }
       });
     } catch (err) {
       console.log(err);
     }
   };
-  
+
   return {
     handleClick,
     handleEmoji,
@@ -95,8 +116,9 @@ function useChat() {
     open,
     loading,
     setLoading,
-    isOnline, 
-    lastOnline 
+    isOnline,
+    lastOnline,
+    isReceiverTyping
   };
 }
 

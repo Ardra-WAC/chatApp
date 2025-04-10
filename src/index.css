@@ -5,30 +5,62 @@
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-body{
-  background-image:url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?cs=srgb&dl=pexels-felixmittermeier-956999.jpg&fm=jpg");
+
+body {
+  background-image: url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?cs=srgb&dl=pexels-felixmittermeier-956999.jpg&fm=jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: 100% 100%;
-  display:flex ;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  background-size: cover;
+  min-height: 100vh;
   color: white;
- 
-.container{
-  width:80vw;
-  height:90vh;
-   /* background-color: rgba(15, 26, 235, 0.15);
-  backdrop-filter: blur(10px) saturate(0%);*/
-  border-radius: 12px ;
-  border: 2px double white;
-  display: flex; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.loading{
+
+.container {
+  width: 88vw;
+  height: 90vh;
+  border-radius: 12px;
+  border: 2px double white;
+  display: flex;
+  overflow: hidden;
+}
+
+.loading {
   padding: 50px;
   font-size: 36px;
   border-radius: 10px;
   background-color: blue;
 }
+
+/* Desktop layout */
+.desktop-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mobile layout */
+.mobile-layout {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    flex-direction: column;
+  }
+
+  .desktop-layout {
+    display: none;
+  }
+
+  .mobile-layout {
+    display: block;
+  }
 }

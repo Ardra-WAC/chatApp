@@ -3,11 +3,11 @@ import "../styles/List.css";
 import UserInfo from "./UserInfo";
 import ChatList from "./ChatList";
 
-function List() {
+function List({ onChatSelect }) {
   return (
     <div className="list">
       <UserInfo />
-      <ChatList />
+      <ChatList onChatSelect={onChatSelect} />
     </div>
   );
 }

@@ -1,67 +1,76 @@
 import React from "react";
-import "../styles/Detail.css";
-import { FaAngleDown, FaDownload } from "react-icons/fa";
+import styles from "../styles/Detail.module.css";
+import { FaAngleDown, FaDownload, FaArrowLeft } from "react-icons/fa";
 import useDetail from "../customHooks/useDetail";
-function Detail() {
+
+function Detail({ user, onBack }) {
   const {
     handleBlock,
     handleLogout,
     isCurrentUserBlocked,
     isReceiverBlocked,
-    user,
     currentUser,
     isOnline,
-    lastOnline
+    lastOnline,
   } = useDetail();
 
   return (
-    <div className="detail">
-      <div className="user">
-        <img
-          src={user?.blocked.includes(currentUser.id)
-                  ? "/images/bg.jpg":
-            "https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png"
-          }
-          alt=""
-        />
-        <h2>{user?.blocked.includes(currentUser.id)
-                  ? "user" : user?.username }</h2>
-      
+    <div className={styles.detail}>
+      <div className={styles.top}>
+        {onBack && <FaArrowLeft className={styles.backIcon} onClick={onBack} />}
+        <div className={styles.user}>
+          <img
+            src={
+              user?.blocked.includes(currentUser.id)
+                ? "/images/bg.jpg"
+                : "https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png"
+            }
+            alt="Profile Picture"
+          />
+          <h2>
+            {user?.blocked.includes(currentUser.id) ? "user" : user?.username}
+          </h2>
+        </div>
       </div>
-      <div className="info">
-        <div className="option">
-          <div className="title">
+
+      <div className={styles.info}>
+        <div className={styles.option}>
+          <div className={styles.title}>
             <span>Chat Settings</span>
-            <FaAngleDown className="arrowIcon" />
+            <FaAngleDown className={styles.arrowIcon} />
           </div>
         </div>
-        <div className="option">
-          <div className="title">
+
+        <div className={styles.option}>
+          <div className={styles.title}>
             <span>Privacy & help</span>
-            <FaAngleDown className="arrowIcon" />
+            <FaAngleDown className={styles.arrowIcon} />
           </div>
         </div>
-        <div className="option">
-          <div className="title">
+
+        <div className={styles.option}>
+          <div className={styles.title}>
             <span>Shared Photos</span>
-            <FaAngleDown className="arrowIcon" />
+            <FaAngleDown className={styles.arrowIcon} />
           </div>
-          <div className="photos">
-            <div className="photoItems">
-              <div className="photoDetail">
+          <div className={styles.photos}>
+            <div className={styles.photoItems}>
+              <div className={styles.photoDetail}>
                 <img src="/images/bg.jpg" alt="" />
                 <span>imagename.png</span>
               </div>
-              <FaDownload className="downloadIcon" />
+              <FaDownload className={styles.downloadIcon} />
             </div>
           </div>
         </div>
-        <div className="option">
-          <div className="title">
+
+        <div className={styles.option}>
+          <div className={styles.title}>
             <span>Shared Files</span>
-            <FaAngleDown className="arrowIcon" />
+            <FaAngleDown className={styles.arrowIcon} />
           </div>
         </div>
+
         <button onClick={handleBlock}>
           {isCurrentUserBlocked
             ? "You are Blocked!"
@@ -69,7 +78,8 @@ function Detail() {
             ? "UnBlock"
             : "Block User"}
         </button>
-        <button className="logout" onClick={handleLogout}>
+
+        <button className={styles.logout} onClick={handleLogout}>
           Logout
         </button>
       </div>

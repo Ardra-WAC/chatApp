@@ -1,0 +1,314 @@
+/* .login {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+
+.separator {
+  height: 70%;
+  width: 1px;
+  background-color: gray;
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+label img {
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  object-fit: cover;
+  opacity: 0.6;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+input[type="password"] {
+  height: 35px;
+  padding: 5px;
+  display: flex;
+  border: none;
+  outline: none;
+  background-color: rgba(22, 92, 173, 0.897);
+  color:black;
+  font-size: 18px;
+  font-weight: 400;
+  width: 100%;
+}
+input[type="text"]{
+  height: 35px;
+  padding: 5px;
+  display: flex;
+  border: none;
+  outline: none;
+  background-color: rgba(22, 92, 173, 0.897);
+  color:black;
+  font-size: 18px;
+  font-weight: 400;
+  width: 100%;
+}
+
+.passwordContainer {
+  position: relative;
+  width: 100%;
+}
+
+.passwordContainer input {
+  width: 100%;
+  color: black;
+}
+
+.eye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+button {
+  margin-top: 20px;
+  width: 90%;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: #008b8b;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: medium;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  background-color: #008b8b9c;
+}
+
+button:hover:not(:disabled) {
+  background-color: #895129;
+  color: white;
+}
+
+.toggle-link {
+  cursor: pointer;
+  color: #008b8b;
+  text-decoration: underline;
+  margin-top: 10px;
+  display: none;
+}
+
+.toggle-link:hover {
+  color: #895129;
+}
+
+@media screen and (max-width: 768px) {
+  .toggle-link {
+    display: block;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .separator {
+    display: none;
+  }
+
+  .item {
+    width: 100%;
+    display: none; 
+  }
+
+  .item.active {
+    display: flex; 
+  }
+
+  form {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+ */
+
+.login {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+
+.separator {
+  height: 70%;
+  width: 1px;
+  background-color: gray;
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.label img {
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  opacity: 0.6;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.inputText,
+.inputPassword {
+  height: 35px;
+  padding: 5px;
+  display: flex;
+  border: none;
+  outline: none;
+  background-color: rgba(22, 92, 173, 0.897);
+  color: black;
+  font-size: 18px;
+  font-weight: 400;
+  width: 100%;
+}
+
+.passwordContainer {
+  position: relative;
+  width: 100%;
+}
+
+.eye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.button {
+  margin-top: 20px;
+  width: 90%;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: #008b8b;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: medium;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  background-color: #008b8b9c;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #895129;
+  color: white;
+}
+
+.toggleLink {
+  cursor: pointer;
+  color: #008b8b;
+  text-decoration: underline;
+  margin-top: 10px;
+  display: none;
+}
+
+.toggleLink:hover {
+  color: #895129;
+}
+
+@media screen and (max-width: 1024px) {
+  .toggleLink {
+    display: block;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .item {
+    width: 100%;
+    display: none;
+  }
+
+  .active {
+    display: flex;
+  }
+
+  .form {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .form {
+    max-width: 500px;
+  }
+
+  .inputText,
+  .inputPassword {
+    height: 45px;
+  }
+}

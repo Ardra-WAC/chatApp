@@ -1,5 +1,7 @@
 import React from "react";
 import { db, auth } from "../lib/firebase";
+import { ref, set, serverTimestamp } from "firebase/database";
+import { rtdb } from "../lib/firebase";
 import { useAtom, useAtomValue } from "jotai";
 import { userValue, chatValue } from "../lib/userStore";
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
@@ -30,17 +32,16 @@ function useDetail() {
   };
 
   const handleBlock = async () => {
-     if (!user){
-        console.log("no user");
-        return
-     };
+    if (!user) {
+      console.log("no user");
+      return;
+    }
     console.log("handleBlock function evoked");
     const userDocRef = doc(db, "users", currentUser.id);
     try {
-      
       await updateDoc(userDocRef, {
         blocked: isReceiverBlocked ? arrayRemove(user.id) : arrayUnion(user.id),
-      });      
+      });
       blockUser();
     } catch (err) {
       console.log(err);

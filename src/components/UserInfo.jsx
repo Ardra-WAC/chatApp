@@ -5,13 +5,9 @@ import { useAtomValue } from "jotai";
 import { userValue } from "../lib/userStore";
 import { auth } from "../lib/firebase";
 
-import { chatValue } from "../lib/userStore";
-
 function UserInfo() {
   const user = useAtomValue(userValue);
 
-  const chat = useAtomValue(chatValue);
-  const chatId = chat.chatId;
   return (
     <div className="userinfo">
       <div className="user">
@@ -25,9 +21,7 @@ function UserInfo() {
         <FaEllipsisH className="icon" />
         <FaVideo className="icon" />
         <FaEdit className="icon" />
-        {!chatId && (
-          <FaSignOutAlt className="icon" onClick={() => auth.signOut()} />
-        )}
+        <FaSignOutAlt className="icon" onClick={() => auth.signOut()} />
       </div>
     </div>
   );

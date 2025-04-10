@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "reactchat-69a9d.firebasestorage.app",
   messagingSenderId: "1032999750716",
   appId: "1:1032999750716:web:37c5e20b25af2fdc2d8739",
-  databaseURL:"https://reactchat-69a9d-default-rtdb.firebaseio.com"
+  databaseURL: "https://reactchat-69a9d-default-rtdb.firebaseio.com",
 };
 
 const app = initializeApp(firebaseConfig);
